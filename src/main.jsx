@@ -1,33 +1,74 @@
-// import './style.css'
-// import javascriptLogo from './javascript.svg'
-// import viteLogo from '/vite.svg'
-// import { setupCounter } from './counter.js'
-
-// document.querySelector('#app').innerHTML = `
-//   <div>
-//     <a href="https://vite.dev" target="_blank">
-//       <img src="${viteLogo}" class="logo" alt="Vite logo" />
-//     </a>
-//     <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-//       <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-//     </a>
-//     <h1>Hello Vite!</h1>
-//     <div class="card">
-//       <button id="counter" type="button"></button>
-//     </div>
-//     <p class="read-the-docs">
-//       Click on the Vite logo to learn more
-//     </p>
-//   </div>
-// `
-
-// setupCounter(document.querySelector('#counter'))
 import React from "react";
 import ReactDOM from "react-dom/client";
+import pizzaData from "../public/data";
 
 function App() {
-	return <h1>Hello React!</h1>;
+	return (
+		<>
+			<Header />
+			<Menu />
+			<Footer />
+		</>
+	);
 }
+
+function Header() {
+	return <h1>Fast React Pizza Co.</h1>;
+}
+function Menu() {
+	return (
+		<>
+			<h2>Our Menu</h2>
+			{pizzaData.map((pizza) => (
+				<Pizza key={pizza.id} {...pizza} />
+			))}
+		</>
+	);
+}
+function Footer() {
+	//
+	// return React.createElement(
+	// 	"footer",
+	// 	null,
+	// 	"We're currently open!"
+	// );
+	return (
+		<footer>
+			{new Date().toLocaleTimeString()}.We're currently
+			open!
+		</footer>
+	);
+}
+const Pizza = ({
+	name,
+	ingredients,
+	price,
+	photoName,
+	soldOut,
+}) => {
+	return (
+		<>
+			<div
+				className={`pizza ${soldOut} ? "sold-out" : ""`}
+			/>
+			<h2>{name}</h2>
+			<p>Ingredients: {ingredients}</p>
+			<p>£{price}</p>
+			<img src={photoName} alt="photo picture" />
+			{soldOut && (
+				<p style={{ color: "red" }}>Sold Out!!</p>
+			)}
+		</>
+	);
+};
+
+const ListPizzas = () => (
+	<ul>
+		{pizzaData.map((pizza) => (
+			<li key={pizza.id}>{pizza.name}</li>
+		))}
+	</ul>
+);
 const root = ReactDOM.createRoot(
 	document.getElementById("root")
 );

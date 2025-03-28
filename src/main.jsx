@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { v4 as uuidv4 } from "uuid";
 import pizzaData from "../public/data";
 
 function App() {
@@ -19,7 +20,7 @@ function Menu() {
 	return (
 		<>
 			<h2>Our Menu</h2>
-			{pizzaData.map((pizza) => (
+			{updatedPizzaData.map((pizza) => (
 				// Props spread operator ({...pizza})
 				<Pizza key={pizza.id} {...pizza} />
 			))}
@@ -67,6 +68,14 @@ const Pizza = ({
 		</>
 	);
 };
+
+// Create a new array (updatedPizzaData) where each pizza is assigned a unique id using uuid after the uuid package was installed
+const updatedPizzaData = pizzaData.map((pizza) => ({
+	// the spread operator ws used to copy all properties from each pizza object in pizzaData into the new object in updatedPizzaData
+	...pizza,
+	// if the pizza already has an id property, keep it; otherwise generate a new one using uuidv4()
+	id: pizza.id || uuidv4(),
+}));
 
 const root = ReactDOM.createRoot(
 	document.getElementById("root")

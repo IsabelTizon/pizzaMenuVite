@@ -20,6 +20,7 @@ function Menu() {
 		<>
 			<h2>Our Menu</h2>
 			{pizzaData.map((pizza) => (
+				// Props spread operator ({...pizza})
 				<Pizza key={pizza.id} {...pizza} />
 			))}
 		</>
@@ -48,27 +49,25 @@ const Pizza = ({
 }) => {
 	return (
 		<>
-			<div
-				className={`pizza ${soldOut} ? "sold-out" : ""`}
-			/>
-			<h2>{name}</h2>
-			<p>Ingredients: {ingredients}</p>
-			<p>£{price}</p>
-			<img src={photoName} alt="photo picture" />
-			{soldOut && (
-				<p style={{ color: "red" }}>Sold Out!!</p>
-			)}
+			<div className={`pizza ${soldOut ? "sold-out" : ""}`}>
+				{/* Ternary Operator
+				Si soldOut es true, agrega "sold-out" como clase.
+				Si soldOut es false, no agrega nada (""). */}
+				<h2>{name}</h2>
+				<p>Ingredients: {ingredients}</p>
+				<p>£{price}</p>
+				<img src={photoName} alt="photo picture" />
+				{/* short-circuiting
+				Si soldOut es true, renderiza el <p>.
+				Si soldOut es false, no renderiza nada (no muestra el <p>). */}
+				{soldOut && (
+					<p style={{ color: "red" }}>Sold Out!!</p>
+				)}
+			</div>
 		</>
 	);
 };
 
-const ListPizzas = () => (
-	<ul>
-		{pizzaData.map((pizza) => (
-			<li key={pizza.id}>{pizza.name}</li>
-		))}
-	</ul>
-);
 const root = ReactDOM.createRoot(
 	document.getElementById("root")
 );

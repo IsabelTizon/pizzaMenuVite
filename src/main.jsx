@@ -26,10 +26,12 @@ function Menu() {
 	return (
 		<main className="menu">
 			<h2>Our Menu</h2>
-			{updatedPizzaData.map((pizza) => (
-				// Props spread operator ({...pizza})
-				<Pizza key={pizza.id} {...pizza} />
-			))}
+			<li className="pizzas">
+				{updatedPizzaData.map((pizza) => (
+					// Props spread operator ({...pizza})
+					<Pizza key={pizza.id} {...pizza} />
+				))}
+			</li>
 		</main>
 	);
 }

@@ -74,23 +74,25 @@ const Pizza = ({
 				{/* Ternary Operator
 				Si soldOut es true, agrega "sold-out" como clase.
 				Si soldOut es false, no agrega nada (""). */}
-				<h3>{name}</h3>
-				<p>
-					{/* Inline css in React */}
-					<span
-						style={{
-							color: "green",
-							fontSize: "1.2rem",
-							textTransform: "uppercase",
-						}}
-					>
-						Ingredients:
-					</span>
-					{ingredients}
-				</p>
-				{/* Internal css in React */}
-				<p style={priceStyle}>£{price}</p>
-				<img src={photoName} alt="photo picture" />
+				<img src={photoName} alt={name} />
+				<div>
+					<h3>{name}</h3>
+					<p>
+						{/* Inline css in React */}
+						<span
+							style={{
+								color: "green",
+								fontSize: "1.2rem",
+								textTransform: "uppercase",
+							}}
+						>
+							Ingredients:
+						</span>
+						{ingredients}
+					</p>
+					{/* Internal css in React */}
+					<p style={priceStyle}>£{price + 3}</p>
+				</div>
 				{/* short-circuiting
 				Si soldOut es true, renderiza el <p>.
 				Si soldOut es false, no renderiza nada (no muestra el <p>). */}
@@ -104,7 +106,7 @@ const Pizza = ({
 
 // NEW ARRAY (updatedPizzaData) where each pizza is assigned a unique id using uuid after the uuid package was installed
 const updatedPizzaData = pizzaData.map((pizza) => ({
-	// the spread operator ws used to copy all properties from each pizza object in pizzaData into the new object in updatedPizzaData
+	// the spread operator was used to copy all properties from each pizza object in pizzaData into the new object in updatedPizzaData
 	...pizza,
 	// if the pizza already has an id property, keep it; otherwise generate a new one using uuidv4()
 	id: pizza.id || uuidv4(),

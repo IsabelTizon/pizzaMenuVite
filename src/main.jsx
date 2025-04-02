@@ -43,7 +43,7 @@ function Menu() {
 }
 function Footer() {
 	const hour = new Date().getHours();
-	const openHour = 8.0;
+	const openHour = 12.0;
 	const closeHour = 20.3;
 	console.log(hour);
 	const isOpen = hour <= closeHour && hour >= openHour;
@@ -51,35 +51,48 @@ function Footer() {
 
 	return (
 		<footer className="footer">
-			<div className="order">
-				{/* short-circuiting */}
-				{isOpen && (
-					<p>
-						We're currently open! We open until {closeHour}
-					</p>
-				)}
-				{!isOpen && (
-					<p>
-						Sorry, We're closed at {closeHour} and we'll
-						open at {openHour}
-					</p>
-				)}
-
-				{/* ternary */}
-				<p>
-					{isOpen
-						? "Come to order a pizza!"
-						: "Close till tomorrow!"}
-				</p>
-				{/* new Date().toLocaleTimeString(): a date method that returns a string with the time formatted according to the user's locale settings. */}
-				<p>
-					{new Date().toLocaleTimeString("es-ES", {
-						timeZoneName: "short",
-					})}
-				</p>
-				<button className="btn">Order</button>
-			</div>
+			{/* Extracting JSX into a new component */}
+			<Order
+				closeHour={closeHour}
+				isOpen={isOpen}
+				openHour={openHour}
+			/>
 		</footer>
+	);
+}
+function Order(props) {
+	return (
+		<div className="order">
+			<div
+				style={{ display: "flex", flexDirection: "row" }}
+			>
+				{/* new Date().toLocaleTimeString(): a date method that returns a string with the time formatted according to the user's locale settings. */}
+				{new Date().toLocaleTimeString("es-ES", {
+					timeZoneName: "short",
+				})}
+				{/* short-circuiting */}
+				{props.isOpen && (
+					<p>
+						: We're currently open! Until {props.closeHour}
+					</p>
+				)}
+				{!props.isOpen && (
+					<p>
+						: Sorry, We're closed at {props.closeHour}{" "}
+						Opening at {props.openHour}
+					</p>
+				)}
+			</div>
+
+			{/* ternary */}
+			<p>
+				{props.isOpen
+					? "Come to order a pizza!"
+					: "See you tommorrow!"}
+			</p>
+
+			<button className="btn">Order</button>
+		</div>
 	);
 }
 

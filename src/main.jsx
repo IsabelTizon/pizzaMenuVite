@@ -37,23 +37,42 @@ function Menu() {
 }
 function Footer() {
 	const hour = new Date().getHours();
+	const openHour = 12.0;
+	const closeHour = 20.3;
 	console.log(hour);
-	const isOpen = hour >= 12 && hour <= 20.3;
+	const isOpen = closeHour <= openHour;
 	console.log(isOpen);
 
 	return (
 		<footer className="footer">
-			<p>
-				{isOpen
-					? "We're currently open!"
-					: "Sorry, We're closed!"}
-			</p>
-			{/* new Date().toLocaleTimeString(): a date method that returns a string with the time formatted according to the user's locale settings. */}
-			<p>
-				{new Date().toLocaleTimeString("es-ES", {
-					timeZoneName: "short",
-				})}
-			</p>
+			<div className="order">
+				{/* short-circuiting */}
+				{isOpen && (
+					<p>
+						We're currently open! We open until {closeHour}
+					</p>
+				)}
+				{!isOpen && (
+					<p>
+						Sorry, We're closed at {closeHour} and we'll
+						open at {openHour}
+					</p>
+				)}
+
+				{/* ternary */}
+				<p>
+					{isOpen
+						? "Come to order a pizza!"
+						: "Close till tomorrow!"}
+				</p>
+				{/* new Date().toLocaleTimeString(): a date method that returns a string with the time formatted according to the user's locale settings. */}
+				<p>
+					{new Date().toLocaleTimeString("es-ES", {
+						timeZoneName: "short",
+					})}
+				</p>
+				<button className="btn">Order</button>
+			</div>
 		</footer>
 	);
 }

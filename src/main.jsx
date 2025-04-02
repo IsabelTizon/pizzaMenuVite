@@ -51,7 +51,7 @@ function Footer() {
 
 	return (
 		<footer className="footer">
-			{/* Extracting JSX into a new component */}
+			{/* Extracting JSX (return of function Order) into a new component Order */}
 			<Order
 				closeHour={closeHour}
 				isOpen={isOpen}
@@ -98,6 +98,7 @@ function Order(props) {
 
 // PIZZA COMPONENT
 const Pizza = ({
+	//destructuring components
 	name,
 	ingredients,
 	price,

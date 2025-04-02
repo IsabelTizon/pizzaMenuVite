@@ -23,14 +23,19 @@ function Header() {
 	);
 }
 function Menu() {
+	// const updatedPizzaData = [];
+	const numPizzas = updatedPizzaData.length;
 	return (
 		<main className="menu">
 			<h2>Our Menu</h2>
 			<li className="pizzas">
-				{updatedPizzaData.map((pizza) => (
-					// Props spread operator ({...pizza})
-					<Pizza key={pizza.id} {...pizza} />
-				))}
+				{/* Conditional rendering with ternary */}
+				{numPizzas > 0
+					? updatedPizzaData.map((pizza) => (
+							// Props spread operator ({...pizza})
+							<Pizza key={pizza.id} {...pizza} />
+					  ))
+					: "sorry, We're out of pizzas"}
 			</li>
 		</main>
 	);

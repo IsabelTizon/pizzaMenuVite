@@ -25,6 +25,7 @@ function Header() {
 function Menu() {
 	// const updatedPizzaData = [];
 	const numPizzas = updatedPizzaData.length;
+
 	return (
 		<main className="menu">
 			<h2>Our Menu</h2>
@@ -42,10 +43,10 @@ function Menu() {
 }
 function Footer() {
 	const hour = new Date().getHours();
-	const openHour = 12.0;
+	const openHour = 8.0;
 	const closeHour = 20.3;
 	console.log(hour);
-	const isOpen = closeHour <= openHour;
+	const isOpen = hour <= closeHour && hour >= openHour;
 	console.log(isOpen);
 
 	return (
@@ -94,6 +95,11 @@ const Pizza = ({
 		/* Internal css for the price */
 	}
 	const priceStyle = { color: "green", fontSize: "1.5rem" };
+	{
+		/* Conditional Rendering with multiples returns */
+	}
+	if (soldOut) return null;
+
 	return (
 		<>
 			<div className={`pizza ${soldOut ? "sold-out" : ""}`}>

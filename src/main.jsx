@@ -29,15 +29,25 @@ function Menu() {
 	return (
 		<main className="menu">
 			<h2>Our Menu</h2>
-			<li className="pizzas">
-				{/* Conditional rendering with ternary */}
-				{numPizzas > 0
-					? updatedPizzaData.map((pizza) => (
+			{/* Conditional rendering with ternary */}
+			{numPizzas > 0 ? (
+				// React Fragment (<></>) allow us to have more than just one element inside a piece of JSX
+				<>
+					<p>
+						Authentic Italian cuisine, 6 creative dishes to
+						choose from. All from our stone oven, all
+						organic, all delicious
+					</p>
+					<ul className="pizzas">
+						{updatedPizzaData.map((pizza) => (
 							// Props spread operator ({...pizza})
 							<Pizza key={pizza.id} {...pizza} />
-					  ))
-					: "sorry, We're out of pizzas"}
-			</li>
+						))}
+					</ul>
+				</>
+			) : (
+				"sorry, We're out of pizzas"
+			)}
 		</main>
 	);
 }

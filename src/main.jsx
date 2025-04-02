@@ -122,10 +122,11 @@ const Pizza = ({
 	{
 		/* Conditional Rendering with multiples returns */
 	}
-	if (soldOut) return null;
+	// if (soldOut) return null;
 
 	return (
 		<>
+			{/* Setting classes and text conditionally */}
 			<div className={`pizza ${soldOut ? "sold-out" : ""}`}>
 				{/* Ternary Operator
 				Si soldOut es true, agrega "sold-out" como clase.

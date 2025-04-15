@@ -172,7 +172,7 @@ const updatedPizzaData = pizzaData.map((pizza) => ({
 const root = ReactDOM.createRoot(
 	document.getElementById("root")
 );
-// RENDER
+// Rendering the root component and strict mode
 root.render(
 	<React.StrictMode>
 		<App />

@@ -24,13 +24,13 @@ function Header() {
 }
 function Menu() {
 	// const updatedPizzaData = [];
-	const numPizzas = updatedPizzaData.length;
+	const numPizzas = updatedPizzaData.length; // Using the length of updatedPizzaData to determine how many pizzas are available
 
 	return (
 		<main className="menu">
 			<h2>Our Menu</h2>
 			{/* Conditional rendering with ternary */}
-			{numPizzas > 0 ? (
+			{numPizzas > 0 ? ( // If there are pizzas available, render the menu
 				// React Fragment (<></>) allow us to have more than just one element inside a piece of JSX
 				<>
 					<p>
